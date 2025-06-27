@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+const dbgr= require('debug')('development:mongoose');
+const config = require('./development.json');
 
-mongoose.connect('mongodb://localhost:27017/scratch')
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+mongoose.connect(`${config.MONGOOSE_URI}`)
+    .then(() => dbgr('MongoDB connected'))
+    .catch(err => dbgr('MongoDB connection error:', err));
 
 
 module.exports = mongoose.connection;    
